@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理 - 公司管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="page-header">
+                <h2 class="page-title">用户管理</h2>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">序号</th>
+                            <th style="width: 150px;">用户名</th>
+                            <th style="width: 150px;">密码</th>
+                            <th style="width: 100px;">角色</th>
+                            <th style="width: 120px;">录入公司数</th>
+                            <th style="width: 100px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div id="userModal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; align-items:center; justify-content:center;">
+        <div class="card" style="width: 500px; max-height: 80vh; overflow-y: auto;">
+            <div class="page-header">
+                <h3 id="modalTitle" style="margin:0;">用户录入详情</h3>
+                <button class="btn btn-ghost" onclick="document.getElementById('userModal').style.display='none'">关闭</button>
+            </div>
+            <div id="modalContent">
+                <!-- List will go here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/users.js"></script>
+</body>
+</html>

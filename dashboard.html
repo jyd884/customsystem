@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司总揽 - 公司管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .filters {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .search-input {
+            width: 300px;
+        }
+        .stage-filter {
+            width: 220px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="page-header">
+                <h2 class="page-title">总揽公司信息</h2>
+                <div class="filters">
+                    <input type="text" id="searchInput" class="input-control search-input" placeholder="搜索公司、股东姓名...">
+                    <select id="stageFilter" class="input-control stage-filter">
+                        <option value="">全部跟进标签</option>
+                        <option value="已申请待通过">已申请待通过</option>
+                        <option value="已通过">已通过</option>
+                        <option value="有交流无意向">有交流无意向</option>
+                        <option value="有意向无面谈">有意向无面谈</option>
+                        <option value="已面谈无机会">已面谈无机会</option>
+                        <option value="有机会">有机会</option>
+                    </select>
+                    <!-- Potentially more filters later -->
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table" id="dashboardTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">序号</th>
+                            <th style="width: 140px;">录入时间</th>
+                            <th style="width: 100px;">录入人</th>
+                            <th style="width: 200px;">公司名称</th>
+                            <th style="width: 120px;">股东姓名</th>
+                            <th style="width: 100px;">股份占比</th>
+                            <th style="width: 120px;">来源</th>
+                            <th style="width: 140px;">跟进情况</th>
+                            <th style="min-width: 150px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="emptyState" class="text-center hidden" style="padding: 40px; color: var(--muted);">
+                暂无数据
+            </div>
+        </div>
+    </div>
+
+    <!-- Read-only Detail Modal -->
+    <div id="detailModal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; align-items:center; justify-content:center;">
+        <div class="card" style="width: 600px; max-height: 90vh; overflow-y: auto;">
+            <div class="page-header">
+                <h3 style="margin:0;">公司详情</h3>
+                <button class="btn btn-ghost" onclick="document.getElementById('detailModal').style.display='none'">关闭</button>
+            </div>
+            <div id="detailContent"></div>
+            <div style="margin-top: 24px; text-align: right;">
+                <button id="modalEditBtn" class="btn btn-primary">前往修改</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

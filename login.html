@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 公司管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: #eef2f6;">
+    <div class="auth-container">
+        <div class="card auth-box">
+            <div class="text-center" style="margin-bottom: 16px;">
+                <img src="./image.png" alt="公司管理系统 Logo" style="width: 96px; height: 96px; object-fit: contain;">
+            </div>
+            <h2 class="text-center" style="margin-bottom: 24px;">OCS组织力客户管理系统</h2>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">登录</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" name="username" class="input-control" placeholder="请输入用户名" required>
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" name="password" class="input-control" placeholder="请输入密码" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">立即登录</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

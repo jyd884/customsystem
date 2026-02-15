@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司信息输入 - 公司管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="page-header">
+                <h2 class="page-title" id="pageTitle">录入公司信息</h2>
+                <div style="display: flex; gap: 8px;">
+                    <a href="javascript:history.back()" class="btn btn-ghost" id="backBtn" style="display:none">返回</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>公司名称</label>
+                <input type="text" id="companyName" class="input-control" placeholder="请输入完整公司名称">
+            </div>
+
+            <div style="margin-top: 32px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; font-size: 18px;">股东信息</h3>
+                <button id="addShareholderBtn" class="btn btn-ghost">+ 添加股东</button>
+            </div>
+
+            <div id="shareholdersList" class="shareholder-list">
+                <!-- Dynamic Content -->
+            </div>
+
+            <div class="form-actions">
+                <button id="saveBtn" class="btn btn-primary">保存信息</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template for Shareholder Item -->
+    <template id="shareholderTemplate">
+        <div class="shareholder-item">
+            <div class="shareholder-header">
+                <span class="shareholder-count" style="font-weight: 600; font-size: 14px; color: var(--primary);">股东 #1</span>
+                <button class="btn btn-danger-ghost remove-btn" type="button" style="padding: 4px 8px; font-size: 12px;">移除</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                    <label>股东姓名</label>
+                    <input type="text" class="input-control sh-name" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                    <label>股东手机</label>
+                    <input type="text" class="input-control sh-phone" placeholder="手机号">
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                    <label>股份占比</label>
+                    <input type="text" class="input-control sh-share" placeholder="例如: 20%">
+                </div>
+                <div class="form-group">
+                    <label>跟进情况</label>
+                    <select class="input-control sh-stage">
+                        <!-- Options populated via JS -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>来源</label>
+                <input type="text" class="input-control sh-source" placeholder="例如：电话、推荐、活动等">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label>跟进情况</label>
+                <textarea class="input-control sh-notes" placeholder="请输入跟进情况、沟通记录等..."></textarea>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/utils.js"></script>
+    <script src="js/input.js"></script>
+</body>
+</html>
