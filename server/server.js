@@ -56,12 +56,18 @@ app.get('/api/companies', (req, res) => {
         companies.forEach(comp => {
             const shareholders = db.prepare("SELECT * FROM shareholders WHERE company_id = ?").all(comp.id);
             const sources = db.prepare("SELECT shareholder_id, source FROM sources WHERE company_id = ?").all(comp.id);
+            const jobs = db.prepare("SELECT shareholder_id, title FROM jobs WHERE company_id = ?").all(comp.id);
             const sourceMap = {};
             sources.forEach(s => {
                 sourceMap[s.shareholder_id] = s.source;
             });
+            const jobMap = {};
+            jobs.forEach(j => {
+                jobMap[j.shareholder_id] = j.title;
+            });
             shareholders.forEach(sh => {
                 sh.source = sourceMap[sh.id] || '';
+                sh.job = jobMap[sh.id] || '';
             });
             comp.shareholders = shareholders;
         });
@@ -86,12 +92,18 @@ app.get('/api/companies/:id', (req, res) => {
         if (!company) return res.status(404).json({ error: "Company not found" });
         const shareholders = db.prepare("SELECT * FROM shareholders WHERE company_id = ?").all(id);
         const sources = db.prepare("SELECT shareholder_id, source FROM sources WHERE company_id = ?").all(id);
+        const jobs = db.prepare("SELECT shareholder_id, title FROM jobs WHERE company_id = ?").all(id);
         const sourceMap = {};
         sources.forEach(s => {
             sourceMap[s.shareholder_id] = s.source;
         });
+        const jobMap = {};
+        jobs.forEach(j => {
+            jobMap[j.shareholder_id] = j.title;
+        });
         shareholders.forEach(sh => {
             sh.source = sourceMap[sh.id] || '';
+            sh.job = jobMap[sh.id] || '';
         });
         company.shareholders = shareholders;
         company.followHistory = db.prepare(
@@ -116,11 +128,13 @@ app.post('/api/companies', (req, res) => {
         db.prepare("INSERT INTO companies (id, name, created_at, created_by) VALUES (?, ?, ?, ?)").run(id, name, createdAt, createdBy);
         const shStmt = db.prepare("INSERT INTO shareholders (id, company_id, name, phone, share, stage, notes) VALUES (?, ?, ?, ?, ?, ?, ?)");
         const sourceStmt = db.prepare("INSERT INTO sources (company_id, shareholder_id, source) VALUES (?, ?, ?)");
+        const jobStmt = db.prepare("INSERT INTO jobs (company_id, shareholder_id, title) VALUES (?, ?, ?)");
         const historyStmt = db.prepare("INSERT INTO follow_history (company_id, shareholder_id, stage, changed_at) VALUES (?, ?, ?, ?)");
         if (shareholders && shareholders.length > 0) {
             shareholders.forEach(sh => {
                 shStmt.run(sh.id, id, sh.name, sh.phone, sh.share, sh.stage, sh.notes);
                 sourceStmt.run(id, sh.id, sh.source);
+                jobStmt.run(id, sh.id, sh.job || '');
                 historyStmt.run(id, sh.id, sh.stage, createdAt || new Date().toISOString());
             });
         }
@@ -146,13 +160,16 @@ app.put('/api/companies/:id', (req, res) => {
           .run(name, lastModified, lastModifiedBy, id);
         db.prepare("DELETE FROM shareholders WHERE company_id = ?").run(id);
         db.prepare("DELETE FROM sources WHERE company_id = ?").run(id);
+        db.prepare("DELETE FROM jobs WHERE company_id = ?").run(id);
         const shStmt = db.prepare("INSERT INTO shareholders (id, company_id, name, phone, share, stage, notes) VALUES (?, ?, ?, ?, ?, ?, ?)");
         const sourceStmt = db.prepare("INSERT INTO sources (company_id, shareholder_id, source) VALUES (?, ?, ?)");
+        const jobStmt = db.prepare("INSERT INTO jobs (company_id, shareholder_id, title) VALUES (?, ?, ?)");
         const historyStmt = db.prepare("INSERT INTO follow_history (company_id, shareholder_id, stage, changed_at) VALUES (?, ?, ?, ?)");
         if (shareholders && shareholders.length > 0) {
             shareholders.forEach(sh => {
                 shStmt.run(sh.id, id, sh.name, sh.phone, sh.share, sh.stage, sh.notes);
                 sourceStmt.run(id, sh.id, sh.source);
+                jobStmt.run(id, sh.id, sh.job || '');
                 const prevStage = stageMap[sh.id];
                 if (!prevStage || prevStage !== sh.stage) {
                     historyStmt.run(id, sh.id, sh.stage, lastModified || new Date().toISOString());
@@ -173,6 +190,7 @@ app.delete('/api/companies/:id', (req, res) => {
     const deleteTransaction = db.transaction(() => {
         db.prepare("DELETE FROM follow_history WHERE company_id = ?").run(id);
         db.prepare("DELETE FROM sources WHERE company_id = ?").run(id);
+        db.prepare("DELETE FROM jobs WHERE company_id = ?").run(id);
         db.prepare("DELETE FROM shareholders WHERE company_id = ?").run(id);
         db.prepare("DELETE FROM companies WHERE id = ?").run(id);
     });

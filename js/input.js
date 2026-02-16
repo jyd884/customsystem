@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                         item.querySelector('.sh-name'),
                         item.querySelector('.sh-phone'),
                         item.querySelector('.sh-share'),
-                        item.querySelector('.sh-source')
+                        item.querySelector('.sh-source'),
+                        item.querySelector('.sh-job')
                     ];
                     inputsToDisable.forEach(input => {
                         if(input) {
@@ -154,18 +155,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             const shPhoneInput = item.querySelector('.sh-phone');
             const shShareInput = item.querySelector('.sh-share');
             const shSourceInput = item.querySelector('.sh-source');
+            const shJobInput = item.querySelector('.sh-job');
 
             const shName = shNameInput.value.trim();
             const shPhone = shPhoneInput.value.trim();
             let shShare = shShareInput.value.trim();
             const shSource = shSourceInput.value.trim();
+            const shJob = shJobInput.value.trim();
 
-            if (!shName || !shPhone || !shShare || !shSource) {
+            if (!shName || !shPhone || !shShare || !shSource || !shJob) {
                 isValid = false;
                 if (!firstInvalidInput) {
                     firstInvalidInput = !shName
                         ? shNameInput
-                        : (!shPhone ? shPhoneInput : (!shShare ? shShareInput : shSourceInput));
+                        : (!shPhone ? shPhoneInput : (!shShare ? shShareInput : (!shSource ? shSourceInput : shJobInput)));
                 }
             } else {
                 // 1. Phone validation: 11 digits, starts with 1
@@ -198,6 +201,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 share: shShare,
                 stage: item.querySelector('.sh-stage').value,
                 source: shSource,
+                job: shJob,
                 notes: item.querySelector('.sh-notes').value.trim()
             });
         });
@@ -208,7 +212,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         if (!isValid) {
-            alert('股东姓名、股东手机、股份占比、来源均填写后才能录入');
+            alert('股东姓名、股东手机、股份占比、招聘平台、招聘职位均填写后才能录入');
             if (firstInvalidInput) firstInvalidInput.focus();
             return;
         }
@@ -279,6 +283,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             item.querySelector('.sh-phone').value = data.phone || '';
             item.querySelector('.sh-share').value = data.share || '';
             item.querySelector('.sh-source').value = data.source || '';
+            item.querySelector('.sh-job').value = data.job || '';
             item.querySelector('.sh-notes').value = data.notes || '';
             if (data.stage) select.value = data.stage;
         }

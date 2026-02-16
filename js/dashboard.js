@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             shareholderName: sh.name,
                             share: sh.share,
                             source: sh.source,
+                            job: sh.job,
                             stage: sh.stage,
                             fullCompany: comp
                         });
@@ -75,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         shareholderName: '-',
                         share: '-',
                         source: '-',
+                        job: '-',
                         stage: '-',
                         fullCompany: comp
                     });
@@ -87,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return (
                     r.companyName.toLowerCase().includes(query) ||
                     r.shareholderName.toLowerCase().includes(query) ||
+                    (r.job || '').toLowerCase().includes(query) ||
                     (r.stage || '').toLowerCase().includes(query)
                 );
             }).filter(r => {
@@ -111,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${row.shareholderName}</td>
                         <td>${row.share || '-'}</td>
                         <td>${row.source || '-'}</td>
+                        <td>${row.job || '-'}</td>
                         <td><span class="status-tag ${getStageClass(row.stage)}">${row.stage || '-'}</span></td>
                         <td>
                             <button class="btn btn-ghost" style="padding: 4px 8px;" onclick="showDetail('${row.id}')">详情</button>
@@ -156,7 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="font-size: 13px; color: #555;">
                         <div>手机: ${sh.phone || '-'}</div>
                         <div>股份: ${sh.share || '-'}</div>
-                        <div>来源: ${sh.source || '-'}</div>
+                        <div>招聘平台: ${sh.source || '-'}</div>
+                        <div>招聘职位: ${sh.job || '-'}</div>
                         ${sh.notes ? `<div style="margin-top:4px; padding-top:4px; border-top:1px dashed #ddd;">跟进情况: ${sh.notes}</div>` : ''}
                     </div>
                 </div>

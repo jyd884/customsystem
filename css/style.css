@@ -167,6 +167,7 @@ textarea.input-control {
   width: 100%;
   border-collapse: collapse;
   min-width: 800px;
+  font-size: 13px;
 }
 
 .data-table th, 

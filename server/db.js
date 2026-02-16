@@ -60,8 +60,18 @@ function initDb() {
         FOREIGN KEY (shareholder_id) REFERENCES shareholders (id) ON DELETE CASCADE
     )`);
 
+    // Jobs Table (per shareholder)
+    db.exec(`CREATE TABLE IF NOT EXISTS jobs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        company_id TEXT,
+        shareholder_id TEXT UNIQUE,
+        title TEXT,
+        FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE,
+        FOREIGN KEY (shareholder_id) REFERENCES shareholders (id) ON DELETE CASCADE
+    )`);
 
-    
+
+
 
     // Follow History Table (stage changes)
     db.exec(`CREATE TABLE IF NOT EXISTS follow_history (
