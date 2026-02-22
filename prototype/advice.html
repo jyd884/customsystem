@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建议页 - 组织活力小测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #fdfdfd; padding-top: 48px !important; }
+        .section-box { border-bottom: 2px solid #f0f0f0; padding-bottom: 24px; margin-bottom: 24px; position: relative; }
+        .section-box:last-child { border-bottom: none; }
+        .section-title { font-size: 18px; font-weight: 700; color: #333; margin-bottom: 12px; display: flex; align-items: center; }
+        .section-title::before { content: ""; width: 4px; height: 16px; background-color: #0052d9; margin-right: 8px; border-radius: 2px; }
+        .status-badge { display: inline-block; background-color: #fff2f1; color: #d54941; padding: 4px 10px; border-radius: 6px; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .issue-list li { margin-bottom: 10px; display: flex; align-items: flex-start; color: #555; line-height: 1.6; }
+        .issue-icon { min-width: 24px; text-align: center; margin-right: 8px; font-size: 16px; }
+        .advice-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; }
+        .advice-head { font-weight: 600; color: #1e293b; margin-bottom: 8px; font-size: 15px; }
+        .advice-list li { position: relative; padding-left: 14px; margin-bottom: 6px; font-size: 14px; color: #64748b; }
+        .advice-list li::before { content: "•"; position: absolute; left: 0; color: #0052d9; font-weight: bold; }
+    </style>
+</head>
+<body class="p-5 max-w-lg mx-auto bg-white min-h-screen">
+
+    <div class="mb-6 border-b pb-4">
+        <div class="status-badge">▶ 活力不足</div>
+        <h1 class="text-2xl font-bold text-gray-900">诊断报告与建议</h1>
+        <p class="text-sm text-gray-400 mt-2">基于您的问卷结果生成的定制化建议</p>
+    </div>
+
+    <!-- 1. 结果简述 -->
+    <div class="section-box">
+        <h2 class="section-title">1. 结果简述</h2>
+        <p class="text-sm text-gray-600 leading-relaxed text-justify">
+            您的组织在基础运营中存在明显短板，员工主动性不足、协作效率低，需优先解决资源支持与目标共识问题，避免影响整体绩效。
+        </p>
+    </div>
+
+    <!-- 2. 关键问题 -->
+    <div class="section-box">
+        <h2 class="section-title">2. 关键问题</h2>
+        <ul class="issue-list text-sm">
+            <li>
+                <span class="issue-icon">🚫</span>
+                <span><strong>资源支持缺失：</strong>工具/培训不足，工作推进受阻</span>
+            </li>
+            <li>
+                <span class="issue-icon">🚫</span>
+                <span><strong>目标共识破裂：</strong>个人与组织目标脱节，员工盲目干活</span>
+            </li>
+            <li>
+                <span class="issue-icon">🚫</span>
+                <span><strong>激励机制失效：</strong>付出与回报不匹配，积极性受挫</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 3. 优化建议 -->
+    <div class="section-box">
+        <h2 class="section-title">3. 优化建议</h2>
+        
+        <!-- 短期急救 -->
+        <div class="advice-card bg-orange-50 border-orange-100">
+            <h3 class="advice-head text-orange-800">短期急救（1-2个月）</h3>
+            <ul class="advice-list text-orange-700/80">
+                <li style="color: inherit">召开全员目标对齐会，明确各岗位核心职责</li>
+                <li style="color: inherit">优先解决高频工作所需工具/权限问题</li>
+                <li style="color: inherit">设立“月度优秀贡献奖”，快速激活积极性</li>
+            </ul>
+        </div>
+
+        <!-- 中期巩固 -->
+        <div class="advice-card mt-4 bg-blue-50 border-blue-100">
+            <h3 class="advice-head text-blue-800">中期巩固（3-6个月）</h3>
+            <ul class="advice-list text-blue-700/80">
+                <li style="color: inherit">优化薪酬体系，增加绩效奖金占比</li>
+                <li style="color: inherit">搭建跨部门协作平台，明确对接人</li>
+                <li style="color: inherit">开展基础技能培训，弥补能力短板</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="h-8"></div> <!-- Spacer -->
+
+</body>
+</html>

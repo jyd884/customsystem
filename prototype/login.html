@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 组织活力小测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* TDesign 风格模拟 */
+        body {
+            padding-top: 48px !important;
+            background-color: #f3f3f3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        }
+        .t-input {
+            border: 1px solid #dcdcdc;
+            transition: border-color 0.2s;
+        }
+        .t-input:focus {
+            border-color: #0052d9;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 82, 217, 0.2);
+        }
+        .t-button {
+            background-color: #0052d9;
+            color: white;
+            transition: background-color 0.2s;
+        }
+        .t-button:active {
+            background-color: #003cab;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen p-4 bg-gray-50">
+
+    <div class="flex-1 flex flex-col justify-center max-w-md mx-auto w-full">
+        <!-- Header -->
+        <div class="mb-8 text-center flex flex-col items-center">
+            <!-- Logo -->
+            <img src="./image.png" alt="OCS Logo" class="h-12 mb-4 w-auto object-contain">
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">组织活力小测试</h1>
+            <p class="text-sm text-gray-500">激活员工敬业度 提高组织活力 从调查开始</p>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white rounded-lg shadow-sm p-6 space-y-4">
+            
+            <!-- Name -->
+            <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">您的姓名</label>
+                <input type="text" placeholder="请输入姓名" class="t-input w-full px-3 py-2.5 rounded-md text-sm bg-white">
+            </div>
+
+            <!-- Phone -->
+            <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">您的电话</label>
+                <input type="tel" placeholder="请输入电话号码" class="t-input w-full px-3 py-2.5 rounded-md text-sm bg-white">
+            </div>
+
+            <!-- Company -->
+            <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">您服务的公司全称</label>
+                <input type="text" placeholder="请输入公司全称" class="t-input w-full px-3 py-2.5 rounded-md text-sm bg-white">
+            </div>
+
+            <!-- Position -->
+            <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">您的职位</label>
+                <input type="text" placeholder="请输入职位" class="t-input w-full px-3 py-2.5 rounded-md text-sm bg-white">
+            </div>
+
+            <!-- Employee Count -->
+            <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">公司总人数</label>
+                <input type="number" placeholder="请输入人数" class="t-input w-full px-3 py-2.5 rounded-md text-sm bg-white">
+            </div>
+
+            <!-- Industry -->
+            <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">公司行业</label>
+                <div class="relative">
+                    <select class="t-input w-full px-3 py-2.5 rounded-md text-sm bg-white appearance-none">
+                        <option value="" disabled selected>请选择行业</option>
+                        <option value="manufacturing">制造业（工矿企业）</option>
+                        <option value="property">物业</option>
+                        <option value="logistics">物流</option>
+                        <option value="real_estate">房地产</option>
+                        <option value="ecommerce">电商</option>
+                        <option value="education">教育培训</option>
+                        <option value="public_sector">事业单位</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-400 text-center pt-2">为生成的报表更符合您公司的现状，请认真思考后填写</p>
+
+            <!-- Button -->
+            <button class="t-button w-full py-3 rounded-md font-medium text-base shadow-sm mt-4 hover:opacity-90 active:scale-[0.99] transform transition-all" onclick="window.parent.location.reload();">
+                开始诊断
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷页 - 组织活力小测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f7f8fa; padding-top: 48px !important; }
+        .question-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .option-group { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+        .radio-label { display: flex; align-items: center; padding: 8px; border-radius: 8px; transition: background-color 0.2s; cursor: pointer; }
+        .radio-label:active { background-color: #f2f3f5; }
+        .radio-input { margin-right: 10px; accent-color: #0052d9; transform: scale(1.2); }
+        .section-title { font-size: 18px; font-weight: 600; color: #1d1d1f; margin: 24px 0 12px 4px; border-left: 4px solid #0052d9; padding-left: 10px; }
+        .submit-btn { position: fixed; bottom: 20px; left: 16px; right: 16px; background: #0052d9; color: white; padding: 14px; border-radius: 8px; font-weight: 600; text-align: center; box-shadow: 0 4px 12px rgba(0, 82, 217, 0.2); z-index: 50; }
+        .spacer-bottom { height: 80px; }
+    </style>
+</head>
+<body class="p-4 safe-area-inset-bottom">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h1 class="text-xl font-bold text-gray-900">组织活力诊断问卷</h1>
+        <p class="text-xs text-gray-500 mt-1">请根据您的真实感受选择最符合的选项</p>
+    </div>
+
+    <form id="surveyForm" onsubmit="event.preventDefault(); window.location.href='report.html';">
+        
+        <!-- Section 1 -->
+        <h2 class="section-title">一、个人活力</h2>
+        
+        <!-- Q1 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">1. 每个员工都知道自己的工作目标与核心职责，且与组织目标一致。（目标与职责）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q1" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q1" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q1" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q1" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q1" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">2. 公司为我提供了完成工作所需的资源、工具和培训支持（工作支持与成长性）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q2" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q2" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q2" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q2" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q2" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">3. 公司的薪酬福利、激励机制公平合理，能匹配大部分员工的付出与价值（激励机制）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q3" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q3" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q3" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q3" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q3" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">4. 我的创新建议会被上级认真考虑（创造力激发）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q4" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q4" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q4" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q4" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q4" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">5. 公司的激励机制让我愿意付出额外努力（结果导向）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q5" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q5" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q5" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q5" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q5" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <h2 class="section-title">二、团队活力</h2>
+
+        <!-- Q6 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">6. 团队成员能坦诚沟通分歧，无需顾虑（开放沟通）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q6" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q6" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q6" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q6" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q6" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card">
+            <p class="font-medium text-gray-800 text-sm">7. 跨部门协作时，资源和支持能快速到位（高效协作）</p>
+            <div class="option-group">
+                <label class="radio-label"><input type="radio" name="q7" value="5" class="radio-input"> 非常符合 (5分)</label>
+                <label class="radio-label"><input type="radio" name="q7" value="4" class="radio-input"> 比较符合 (4分)</label>
+                <label class="radio-label"><input type="radio" name="q7" value="3" class="radio-input"> 一般 (3分)</label>
+                <label class="radio-label"><input type="radio" name="q7" value="2" class="radio-input"> 不太符合 (2分)</label>
+                <label class="radio-label"><input type="radio" name="q7" value="1" class="radio-input"> 非常不符合 (1分)</label>
+            </div>
+        </div>
+
+        <div class="spacer-bottom"></div>
+
+        <button type="submit" class="submit-btn hover:bg-blue-700 active:scale-95 transition-transform" onclick="window.parent.location.reload();">
+            提交问卷
+        </button>
+
+    </form>
+</body>
+</html>
