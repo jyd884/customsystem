@@ -22,8 +22,8 @@
         <view class="sub-name">团队活力</view>
       </view>
       <view class="sub-item">
-        <view class="sub-val">{{organizationScore}}</view>
-        <view class="sub-name">组织平均</view>
+        <view class="sub-val">{{orgScore}}</view>
+        <view class="sub-name">组织活动</view>
       </view>
     </view>
   </view>

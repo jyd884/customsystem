@@ -33,7 +33,7 @@
 
     <view class="field">
       <view class="field-label">公司行业</view>
-      <t-cell class="industry-cell" title="" note="{{form.industry || '请选择行业'}}" arrow bind:click="openIndustryPicker" />
+      <t-cell class="industry-cell" title="" note="{{form.industry || '请选择行业'}}" arrow bind:click="openIndustryPicker" t-class-note="{{form.industry ? 'industry-selected' : 'industry-placeholder'}}" />
     </view>
 
     <view class="tip">为生成的报表更符合您公司的现状，请认真思考后填写</view>
@@ -41,16 +41,17 @@
     <t-button theme="primary" size="large" block bind:tap="onStart" t-class="submit-btn">开始诊断</t-button>
   </view>
 
-  <t-popup visible="{{industryPickerVisible}}" placement="bottom" bind:visible-change="onIndustryVisibleChange">
-    <t-picker
-      title="请选择行业"
-      columns="{{industryColumns}}"
-      value="{{industryValue}}"
-      bind:change="onIndustryChange"
-      bind:confirm="onIndustryConfirm"
-      bind:cancel="onIndustryCancel"
-    />
-  </t-popup>
+  <t-picker
+    visible="{{industryPickerVisible}}"
+    title="请选择行业"
+    cancelBtn="取消"
+    confirmBtn="确认"
+    bind:change="onIndustryChange"
+    bind:confirm="onIndustryConfirm"
+    bind:cancel="onIndustryCancel"
+  >
+    <t-picker-item options="{{industryColumns[0]}}" />
+  </t-picker>
 
   <t-toast id="t-toast" />
 </view>

@@ -6,6 +6,7 @@
     "t-cell": "/miniprogram_npm/tdesign-miniprogram/cell/cell",
     "t-popup": "/miniprogram_npm/tdesign-miniprogram/popup/popup",
     "t-picker": "/miniprogram_npm/tdesign-miniprogram/picker/picker",
+    "t-picker-item": "/miniprogram_npm/tdesign-miniprogram/picker-item/picker-item",
     "t-toast": "/miniprogram_npm/tdesign-miniprogram/toast/toast"
   }
 }

@@ -65,6 +65,16 @@
   padding: 16rpx 24rpx;
 }
 
+.industry-selected {
+  color: #333333 !important;
+  font-size: 32rpx !important;
+}
+
+.industry-placeholder {
+  color: #bbbbbb !important;
+  font-size: 32rpx !important;
+}
+
 .tip {
   margin: 32rpx 0;
   font-size: 24rpx;

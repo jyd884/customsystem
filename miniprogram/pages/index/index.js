@@ -65,7 +65,7 @@ Page({
     this.setData({
       industryPickerVisible: false,
       industryValue: e.detail.value,
-      "form.industry": e.detail.value[0] || "",
+      "form.industry": e.detail.value[0]?.value || e.detail.value[0] || "",
     });
   },
 
@@ -75,7 +75,7 @@ Page({
     });
   },
 
-  onStart() {
+  async onStart() {
     const { name, phone, company } = this.data.form;
     if (!name.trim()) {
       showToast(this, "请填写您的姓名");
@@ -99,10 +99,39 @@ Page({
       employeeCount: this.data.form.employeeCount,
     };
 
-    getApp().globalData.profile = profile;
-    wx.setStorageSync("ocsProfile", profile);
-    wx.navigateTo({
-      url: "/pages/survey/index",
-    });
+    wx.showLoading({ title: '加载中...' });
+    try {
+      const res = await wx.cloud.callFunction({
+        name: 'ocs_login',
+        data: {
+          company: profile.company,
+          name: profile.name,
+          position: profile.position,
+          size: profile.employeeCount,
+          phone: profile.phone,
+          industry: profile.industry
+        }
+      });
+      wx.hideLoading();
+      if (res.result && res.result.success) {
+        getApp().globalData.profile = profile;
+        wx.setStorageSync("ocsProfile", profile);
+        wx.navigateTo({
+          url: "/pages/survey/index",
+        });
+      } else if (res.result && res.result.code === 'ALREADY_EXISTS') {
+        wx.showModal({
+          title: '提示',
+          content: res.result.message,
+          showCancel: false
+        });
+      } else {
+        showToast(this, "登录失败，请重试");
+      }
+    } catch (err) {
+      wx.hideLoading();
+      console.error(err);
+      showToast(this, "网络错误，请重试");
+    }
   },
 });

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 组织活力小测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入腾讯云开发 Web SDK -->
+    <script src="https://imgcache.qq.com/qcloud/tcbjs/1.10.8/tcb.js"></script>
+    <style>
+        body { background-color: #f5f6f7; color: #333; }
+        .sidebar { width: 240px; background: #001529; color: white; min-height: 100vh; }
+        .sidebar-menu li { padding: 16px 24px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; }
+        .sidebar-menu li:hover, .sidebar-menu li.active { background: #1890ff; border-left-color: #fff; }
+        .main-content { flex: 1; padding: 24px; overflow-y: auto; }
+        .header-bar { height: 64px; background: white; box-shadow: 0 1px 4px rgba(0,21,41,.08); display: flex; align-items: center; justify-content: flex-end; padding: 0 24px; }
+        .table-container { background: white; border-radius: 4px; padding: 24px; margin-top: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .t-table { width: 100%; border-collapse: collapse; }
+        .t-table th { background: #fafafa; color: #000000d9; font-weight: 500; text-align: left; padding: 16px; border-bottom: 1px solid #f0f0f0; }
+        .t-table td { padding: 16px; border-bottom: 1px solid #f0f0f0; color: #000000a6; }
+        .t-table tr:hover td { background: #fafafa; }
+        .status-tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; background: #e6f7ff; color: #1890ff; border: 1px solid #91d5ff; }
+        #loading { display: none; text-align: center; padding: 20px; color: #666; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <div class="sidebar hidden md:block">
+        <div class="h-16 flex items-center justify-center font-bold text-xl tracking-wider bg-black/20">
+            OCS 管理后台
+        </div>
+        <ul class="sidebar-menu mt-4">
+            <li class="active">用户数据列表</li>
+            <li>问卷配置</li>
+            <li>系统设置</li>
+        </ul>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-1 flex flex-col bg-gray-50">
+        
+        <!-- Header -->
+        <div class="header-bar">
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">管理员 Admin</span>
+                <div class="w-8 h-8 rounded-full bg-gray-300"></div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="main-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-medium text-gray-800">用户提交记录</h2>
+                <div class="space-x-2">
+                    <button class="px-4 py-2 bg-white border border-gray-300 rounded text-sm hover:bg-gray-50">导出Excel</button>
+                    <button onclick="loadData()" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">刷新</button>
+                </div>
+            </div>
+            
+            <div class="table-container overflow-x-auto">
+                <div id="loading">数据加载中...</div>
+                <table class="t-table min-w-full" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th class="w-16">序号</th>
+                            <th>提交日期</th>
+                            <th>公司名称</th>
+                            <th>诊断人</th>
+                            <th>职位</th>
+                            <th>人数</th>
+                            <th>联系电话</th>
+                            <th>总分</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- 数据将通过 JS 动态渲染 -->
+                    </tbody>
+                </table>
+                
+                <div class="flex justify-end mt-4 text-sm text-gray-500" id="totalCount">
+                    共 0 条记录
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化云开发环境
+        const app = tcb.init({
+            env: 'cloud1-6ggntc265d4011ce' // 替换为你的云开发环境ID
+        });
+
+        // 匿名登录
+        const auth = app.auth({
+            persistence: 'local'
+        });
+
+        async function login() {
+            try {
+                await auth.anonymousAuthProvider().signIn();
+                console.log('匿名登录成功');
+                loadData();
+            } catch (err) {
+                console.error('登录失败', err);
+                alert('登录失败，请检查是否在微信开发者工具中开启了“匿名登录”和“Web安全域名”配置。');
+            }
+        }
+
+        async function loadData() {
+            const loading = document.getElementById('loading');
+            const tableBody = document.getElementById('tableBody');
+            const totalCount = document.getElementById('totalCount');
+            
+            loading.style.display = 'block';
+            tableBody.innerHTML = '';
+            
+            try {
+                const db = app.database();
+                const res = await db.collection('ocs_records').orderBy('createTime', 'desc').limit(50).get();
+                const countRes = await db.collection('ocs_records').count();
+                
+                loading.style.display = 'none';
+                totalCount.innerText = `共 ${countRes.total} 条记录`;
+                
+                res.data.forEach((item, index) => {
+                    const date = new Date(item.createTime);
+                    const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${dateStr}</td>
+                        <td>${item.userInfo.company || '-'}</td>
+                        <td>${item.userInfo.name || '-'}</td>
+                        <td>${item.userInfo.position || '-'}</td>
+                        <td>${item.userInfo.size || '-'}</td>
+                        <td>${item.userInfo.phone || '-'}</td>
+                        <td>${item.totalScore || '-'}</td>
+                        <td><span class="status-tag">已完成</span></td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            } catch (err) {
+                loading.style.display = 'none';
+                console.error('获取数据失败', err);
+                alert('获取数据失败，请检查数据库权限设置（需设置为所有用户可读）。');
+            }
+        }
+
+        // 页面加载时执行登录
+        window.onload = login;
+    </script>
+</body>
+</html>

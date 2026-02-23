@@ -53,9 +53,9 @@ Page({
     };
 
     let selected = lowCase;
-    if (score >= 4) {
+    if (score >= 56) {
       selected = highCase;
-    } else if (score >= 3) {
+    } else if (score >= 45) {
       selected = middleCase;
     }
 
