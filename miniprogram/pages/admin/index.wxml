@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="header">
+    <view class="title">用户数据列表</view>
+    <t-button size="small" theme="primary" variant="outline" bind:tap="loadRecords">刷新</t-button>
+  </view>
+
+  <view class="table" wx:if="{{records.length}}">
+    <view class="thead row">
+      <view class="col index">序号</view>
+      <view class="col date">诊断日期</view>
+      <view class="col company">公司</view>
+      <view class="col name">诊断人</view>
+      <view class="col position">职位</view>
+      <view class="col count">公司总人数</view>
+      <view class="col phone">电话</view>
+    </view>
+
+    <view wx:for="{{records}}" wx:key="id" class="row {{index % 2 === 0 ? 'odd' : 'even'}}">
+      <view class="col index">{{index + 1}}</view>
+      <view class="col date">{{item.date}}</view>
+      <view class="col company">{{item.company}}</view>
+      <view class="col name">{{item.name}}</view>
+      <view class="col position">{{item.position}}</view>
+      <view class="col count">{{item.employeeCount}}</view>
+      <view class="col phone">{{item.phone}}</view>
+    </view>
+  </view>
+
+  <t-empty wx:else description="暂无用户数据" />
+
+  <view class="footer-tip">
+    <t-tag theme="default" variant="light">数据来源：小程序本地存储（演示）</t-tag>
+  </view>
+</view>

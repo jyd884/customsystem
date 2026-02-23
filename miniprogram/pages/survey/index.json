@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "问卷",
+  "usingComponents": {
+    "t-button": "/miniprogram_npm/tdesign-miniprogram/button/button",
+    "t-radio-group": "/miniprogram_npm/tdesign-miniprogram/radio-group/radio-group",
+    "t-radio": "/miniprogram_npm/tdesign-miniprogram/radio/radio",
+    "t-toast": "/miniprogram_npm/tdesign-miniprogram/toast/toast"
+  }
+}

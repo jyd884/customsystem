@@ -1,6 +1,11 @@
 {
-  "navigationBarTitleText": "基础能力",
+  "navigationBarTitleText": "登录",
   "usingComponents": {
-    "cloud-tip-modal": "/components/cloudTipModal/index"
+    "t-button": "/miniprogram_npm/tdesign-miniprogram/button/button",
+    "t-input": "/miniprogram_npm/tdesign-miniprogram/input/input",
+    "t-cell": "/miniprogram_npm/tdesign-miniprogram/cell/cell",
+    "t-popup": "/miniprogram_npm/tdesign-miniprogram/popup/popup",
+    "t-picker": "/miniprogram_npm/tdesign-miniprogram/picker/picker",
+    "t-toast": "/miniprogram_npm/tdesign-miniprogram/toast/toast"
   }
 }

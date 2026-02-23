@@ -1,185 +1,108 @@
-// index.js
+const Toast = require("../../miniprogram_npm/tdesign-miniprogram/toast/index");
+
+const INDUSTRY_OPTIONS = [
+  { label: "制造业（工矿企业）", value: "制造业（工矿企业）" },
+  { label: "物业", value: "物业" },
+  { label: "物流", value: "物流" },
+  { label: "房地产", value: "房地产" },
+  { label: "电商", value: "电商" },
+  { label: "教育培训", value: "教育培训" },
+  { label: "事业单位", value: "事业单位" },
+];
+
+const showToast = (context, message, theme = "warning") => {
+  const toastFn = Toast.default || Toast;
+  toastFn({
+    context,
+    selector: "#t-toast",
+    message,
+    theme,
+  });
+};
+
 Page({
   data: {
-    showTip: false,
-    powerList: [
-      {
-        title: "云托管",
-        tip: "不限语言的全托管容器服务",
-        showItem: false,
-        item: [
-          {
-            type: "cloudbaserun",
-            title: "云托管调用",
-          },
-        ],
-      },
-      {
-        title: "云函数",
-        tip: "安全、免鉴权运行业务代码",
-        showItem: false,
-        item: [
-          {
-            type: "getOpenId",
-            title: "获取OpenId",
-          },
-          {
-            type: "getMiniProgramCode",
-            title: "生成小程序码",
-          },
-        ],
-      },
-      {
-        title: "数据库",
-        tip: "安全稳定的文档型数据库",
-        showItem: false,
-        item: [
-          {
-            type: "createCollection",
-            title: "创建集合",
-          },
-          {
-            type: "selectRecord",
-            title: "增删改查记录",
-          },
-          // {
-          //   title: '聚合操作',
-          //   page: 'sumRecord',
-          // },
-        ],
-      },
-      {
-        title: "云存储",
-        tip: "自带CDN加速文件存储",
-        showItem: false,
-        item: [
-          {
-            type: "uploadFile",
-            title: "上传文件",
-          },
-        ],
-      },
-      {
-        title: "AI 接入能力",
-        tip: "云开发 AI 接入能力",
-        showItem: false,
-        item: [
-          {
-            type: "model-guide",
-            title: "大模型对话指引",
-          },
-        ],
-      },
-      {
-        title: "AI 智能开发小程序",
-        tip: "连接 AI 开发工具与 MCP 开发小程序",
-        type: "ai-assistant",
-        skipEnvCheck: true,
-        showItem: false,
-        item: [],
-      },
-    ],
-    haveCreateCollection: false,
-    title: "",
-    content: "",
+    form: {
+      name: "",
+      phone: "",
+      company: "",
+      position: "",
+      employeeCount: "",
+      industry: "",
+    },
+    industryPickerVisible: false,
+    industryColumns: [INDUSTRY_OPTIONS],
+    industryValue: [],
   },
-  onClickPowerInfo(e) {
-    const app = getApp();
-    const index = e.currentTarget.dataset.index;
-    const powerList = this.data.powerList;
-    const selectedItem = powerList[index];
-    
-    // 检查是否跳过环境配置检测
-    if (!selectedItem.skipEnvCheck && !app.globalData.env) {
-      wx.showModal({
-        title: "提示",
-        content: "请在 `miniprogram/app.js` 中正确配置 `env` 参数",
-      });
+
+  onInputChange(e) {
+    const field = e.currentTarget.dataset.field;
+    this.setData({
+      [`form.${field}`]: e.detail.value,
+    });
+  },
+
+  openIndustryPicker() {
+    this.setData({
+      industryPickerVisible: true,
+      industryValue: this.data.form.industry ? [this.data.form.industry] : [],
+    });
+  },
+
+  onIndustryVisibleChange(e) {
+    this.setData({
+      industryPickerVisible: e.detail.visible,
+    });
+  },
+
+  onIndustryChange(e) {
+    this.setData({
+      industryValue: e.detail.value,
+    });
+  },
+
+  onIndustryConfirm(e) {
+    this.setData({
+      industryPickerVisible: false,
+      industryValue: e.detail.value,
+      "form.industry": e.detail.value[0] || "",
+    });
+  },
+
+  onIndustryCancel() {
+    this.setData({
+      industryPickerVisible: false,
+    });
+  },
+
+  onStart() {
+    const { name, phone, company } = this.data.form;
+    if (!name.trim()) {
+      showToast(this, "请填写您的姓名");
       return;
     }
-    if (selectedItem.link) {
-      wx.navigateTo({
-        url: `../web/index?url=${selectedItem.link}&title=${selectedItem.title}`,
-      });
-    } else if (selectedItem.type) {
-      wx.navigateTo({
-        url: `/pages/example/index?envId=${this.data.selectedEnv?.envId}&type=${selectedItem.type}`,
-      });
-    } else if (selectedItem.page) {
-      wx.navigateTo({
-        url: `/pages/${selectedItem.page}/index`,
-      });
-    } else if (
-      selectedItem.title === "数据库" &&
-      !this.data.haveCreateCollection
-    ) {
-      this.onClickDatabase(powerList, selectedItem);
-    } else {
-      selectedItem.showItem = !selectedItem.showItem;
-      this.setData({
-        powerList,
-      });
+    if (!phone.trim()) {
+      showToast(this, "请填写您的电话");
+      return;
     }
-  },
-
-  jumpPage(e) {
-    const { type, page } = e.currentTarget.dataset;
-    console.log("jump page", type, page);
-    if (type) {
-      wx.navigateTo({
-        url: `/pages/example/index?envId=${this.data.selectedEnv?.envId}&type=${type}`,
-      });
-    } else {
-      wx.navigateTo({
-        url: `/pages/${page}/index?envId=${this.data.selectedEnv?.envId}`,
-      });
+    if (!company.trim()) {
+      showToast(this, "请填写公司全称");
+      return;
     }
-  },
 
-  onClickDatabase(powerList, selectedItem) {
-    wx.showLoading({
-      title: "",
+    const profile = {
+      ...this.data.form,
+      name: this.data.form.name.trim(),
+      phone: this.data.form.phone.trim(),
+      company: this.data.form.company.trim(),
+      position: this.data.form.position.trim(),
+      employeeCount: this.data.form.employeeCount,
+    };
+
+    getApp().globalData.profile = profile;
+    wx.setStorageSync("ocsProfile", profile);
+    wx.navigateTo({
+      url: "/pages/survey/index",
     });
-    wx.cloud
-      .callFunction({
-        name: "quickstartFunctions",
-        data: {
-          type: "createCollection",
-        },
-      })
-      .then((resp) => {
-        if (resp.result.success) {
-          this.setData({
-            haveCreateCollection: true,
-          });
-        }
-        selectedItem.showItem = !selectedItem.showItem;
-        this.setData({
-          powerList,
-        });
-        wx.hideLoading();
-      })
-      .catch((e) => {
-        wx.hideLoading();
-        const { errCode, errMsg } = e;
-        if (errMsg.includes("Environment not found")) {
-          this.setData({
-            showTip: true,
-            title: "云开发环境未找到",
-            content:
-              "如果已经开通云开发，请检查环境ID与 `miniprogram/app.js` 中的 `env` 参数是否一致。",
-          });
-          return;
-        }
-        if (errMsg.includes("FunctionName parameter could not be found")) {
-          this.setData({
-            showTip: true,
-            title: "请上传云函数",
-            content:
-              "在'cloudfunctions/quickstartFunctions'目录右键，选择【上传并部署-云端安装依赖】，等待云函数上传完成后重试。",
-          });
-          return;
-        }
-      });
   },
 });

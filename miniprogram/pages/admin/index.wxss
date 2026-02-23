@@ -1,0 +1,88 @@
+.page {
+  background-color: #f5f6f7;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 32rpx;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.table {
+  background: #ffffff;
+  border-radius: 8rpx;
+  overflow-x: auto;
+  box-shadow: 0 2rpx 4rpx rgba(0,0,0,0.05);
+}
+
+.row {
+  min-width: 1240rpx;
+  display: flex;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.thead {
+  background: #fafafa;
+  font-weight: 500;
+}
+
+.col {
+  box-sizing: border-box;
+  padding: 24rpx 16rpx;
+  font-size: 26rpx;
+  color: #000000a6;
+}
+
+.thead .col {
+  color: #000000d9;
+}
+
+.index {
+  width: 90rpx;
+}
+
+.date {
+  width: 230rpx;
+}
+
+.company {
+  width: 220rpx;
+}
+
+.name {
+  width: 120rpx;
+}
+
+.position {
+  width: 140rpx;
+}
+
+.count {
+  width: 180rpx;
+}
+
+.phone {
+  width: 220rpx;
+}
+
+.odd {
+  background: #ffffff;
+}
+
+.even {
+  background: #fafafa;
+}
+
+.footer-tip {
+  margin-top: 32rpx;
+}

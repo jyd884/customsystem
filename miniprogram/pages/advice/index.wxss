@@ -1,0 +1,152 @@
+.page {
+  background-color: #fdfdfd;
+  min-height: 100vh;
+  padding: 40rpx;
+}
+
+.header {
+  margin-bottom: 48rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+  padding-bottom: 32rpx;
+}
+
+.status-badge {
+  display: inline-block;
+  background-color: #fff2f1;
+  color: #d54941;
+  padding: 8rpx 20rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 32rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #111827;
+}
+
+.subtitle {
+  margin-top: 16rpx;
+  color: #9ca3af;
+  font-size: 28rpx;
+}
+
+.section-box {
+  border-bottom: 2rpx solid #f0f0f0;
+  padding-bottom: 48rpx;
+  margin-bottom: 48rpx;
+}
+
+.section-box.no-border {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.section-title::before {
+  content: "";
+  width: 8rpx;
+  height: 32rpx;
+  background-color: #0052d9;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+.section-text {
+  font-size: 28rpx;
+  color: #4b5563;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.issue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.issue-item {
+  display: flex;
+  align-items: flex-start;
+  font-size: 28rpx;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.issue-icon {
+  margin-right: 16rpx;
+  font-size: 32rpx;
+}
+
+.issue-text {
+  flex: 1;
+}
+
+.advice-card {
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-top: 24rpx;
+  border: 2rpx solid transparent;
+}
+
+.advice-card.short {
+  background-color: #fff7ed;
+  border-color: #ffedd5;
+}
+
+.advice-card.mid {
+  background-color: #eff6ff;
+  border-color: #dbeafe;
+  margin-top: 32rpx;
+}
+
+.advice-head {
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  font-size: 30rpx;
+}
+
+.short .advice-head {
+  color: #9a3412;
+}
+
+.mid .advice-head {
+  color: #1e40af;
+}
+
+.advice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.advice-list-item {
+  position: relative;
+  padding-left: 28rpx;
+  font-size: 28rpx;
+}
+
+.short .advice-list-item {
+  color: rgba(194, 65, 12, 0.8);
+}
+
+.mid .advice-list-item {
+  color: rgba(29, 78, 216, 0.8);
+}
+
+.advice-list-item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0052d9;
+  font-weight: bold;
+}
