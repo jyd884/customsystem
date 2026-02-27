@@ -116,15 +116,17 @@ Page({
       if (res.result && res.result.success) {
         getApp().globalData.profile = profile;
         wx.setStorageSync("ocsProfile", profile);
-        wx.navigateTo({
-          url: "/pages/survey/index",
-        });
-      } else if (res.result && res.result.code === 'ALREADY_EXISTS') {
-        wx.showModal({
-          title: '提示',
-          content: res.result.message,
-          showCancel: false
-        });
+        
+        if (res.result.iscomplete) {
+          // 如果已经完成，直接跳转到诊断报告界面
+          wx.navigateTo({
+            url: `/subpages/report/index?id=${res.result.recordId}`,
+          });
+        } else {
+          wx.navigateTo({
+            url: "/subpages/survey/index",
+          });
+        }
       } else {
         showToast(this, "登录失败，请重试");
       }

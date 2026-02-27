@@ -9,7 +9,7 @@
     <view class="question">{{index + 1}}. {{item.title}}</view>
     <t-radio-group value="{{answers[item.id]}}" data-id="{{item.id}}" bind:change="onAnswerChange">
       <view class="option-row">
-        <t-radio wx:for="{{options}}" wx:for-item="opt" wx:key="value" value="{{opt.value}}" icon="line" class="option-item" label="{{opt.label}}" />
+        <t-radio wx:for="{{options}}" wx:for-item="opt" wx:key="value" value="{{opt.value}}" icon="circle" class="option-item" label="{{opt.label}}" />
       </view>
     </t-radio-group>
   </view>
@@ -19,7 +19,7 @@
     <view class="question">{{index + 6}}. {{item.title}}</view>
     <t-radio-group value="{{answers[item.id]}}" data-id="{{item.id}}" bind:change="onAnswerChange">
       <view class="option-row">
-        <t-radio wx:for="{{options}}" wx:for-item="opt" wx:key="value" value="{{opt.value}}" icon="line" class="option-item" label="{{opt.label}}" />
+        <t-radio wx:for="{{options}}" wx:for-item="opt" wx:key="value" value="{{opt.value}}" icon="circle" class="option-item" label="{{opt.label}}" />
       </view>
     </t-radio-group>
   </view>
@@ -29,7 +29,7 @@
     <view class="question">{{index + 11}}. {{item.title}}</view>
     <t-radio-group value="{{answers[item.id]}}" data-id="{{item.id}}" bind:change="onAnswerChange">
       <view class="option-row">
-        <t-radio wx:for="{{options}}" wx:for-item="opt" wx:key="value" value="{{opt.value}}" icon="line" class="option-item" label="{{opt.label}}" />
+        <t-radio wx:for="{{options}}" wx:for-item="opt" wx:key="value" value="{{opt.value}}" icon="circle" class="option-item" label="{{opt.label}}" />
       </view>
     </t-radio-group>
   </view>

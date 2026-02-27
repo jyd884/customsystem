@@ -7,7 +7,7 @@ cloud.init({
 const db = cloud.database();
 
 const questions = [
-  { id: 'q1', category: '个人活力', title: '每个员工都知道自已的工作目标与核心职责，且与组织目标一致。' },
+  { id: 'q1', category: '个人活力', title: '每个员工都知道自已的工作目标与核心职责，且与组织目标一致' },
   { id: 'q2', category: '个人活力', title: '公司为我提供了完成工作所需的资源、工具和培训支持' },
   { id: 'q3', category: '个人活力', title: '公司的薪酬福利、激励机制公平合理，能匹配大部分员工的付出与价值' },
   { id: 'q4', category: '个人活力', title: '我的创新建议会被上级认真考虑' },

@@ -1,0 +1,37 @@
+<view class="page">
+  <view class="section-box">
+    <view class="section-title">1. 结果简述</view>
+    <view class="section-text">{{summary}}</view>
+  </view>
+
+  <view class="section-box">
+    <view class="section-title">{{issuesTitle}}</view>
+    <view class="issue-list">
+      <view wx:for="{{issues}}" wx:key="index" class="issue-item">
+        <text class="issue-icon">{{item.icon}}</text>
+        <text class="issue-text">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-box no-border">
+    <view class="section-title">3. 优化建议</view>
+    <view class="advice-card short">
+      <view class="advice-head">{{adviceTitle1}}</view>
+      <view class="advice-list">
+        <view wx:for="{{adviceList1}}" wx:key="index" class="advice-list-item">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="advice-card mid">
+      <view class="advice-head">{{adviceTitle2}}</view>
+      <view class="advice-list">
+        <view wx:for="{{adviceList2}}" wx:key="index" class="advice-list-item">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-box">
+    <button class="share-btn" open-type="share">转发诊断报告</button>
+  </view>
+</view>

@@ -20,6 +20,33 @@ exports.main = async (event, context) => {
     let userInfo = {};
     if (userRes.data.length > 0) {
       userInfo = userRes.data[0];
+      
+      if (userInfo.iscomplete) {
+        // 查找该用户的最新答题记录
+        const recordRes = await db.collection('ocs_records').where({
+          _openid: openid
+        }).orderBy('createTime', 'desc').limit(1).get();
+        
+        let recordId = null;
+        if (recordRes.data.length > 0) {
+          recordId = recordRes.data[0]._id;
+        }
+        
+        return {
+          success: false,
+          code: 'ALREADY_COMPLETED',
+          message: '您已经完成过该问卷了',
+          recordId: recordId
+        };
+      }
+      
+      // 更新用户的 iscomplete 状态
+      await db.collection('ocs_users').doc(userInfo._id).update({
+        data: {
+          iscomplete: true,
+          updateTime: db.serverDate()
+        }
+      });
     }
 
     const addRes = await db.collection('ocs_records').add({

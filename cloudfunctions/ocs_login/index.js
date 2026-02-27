@@ -20,11 +20,33 @@ exports.main = async (event, context) => {
     }).get();
 
     if (existingUserRes.data.length > 0) {
-      return {
-        success: false,
-        code: 'ALREADY_EXISTS',
-        message: '您已经完成了该测评'
-      };
+      const user = existingUserRes.data[0];
+      if (user.iscomplete) {
+        // 查找该用户的最新答题记录
+        const recordRes = await db.collection('ocs_records').where({
+          _openid: user._openid
+        }).orderBy('createTime', 'desc').limit(1).get();
+        
+        let recordId = null;
+        if (recordRes.data.length > 0) {
+          recordId = recordRes.data[0]._id;
+        }
+        
+        return {
+          success: true,
+          iscomplete: true,
+          recordId: recordId,
+          userId: user._id,
+          openid: user._openid
+        };
+      } else {
+        return {
+          success: true,
+          iscomplete: false,
+          userId: user._id,
+          openid: user._openid
+        };
+      }
     }
 
     // 如果不存在，则新增记录
@@ -32,6 +54,7 @@ exports.main = async (event, context) => {
       data: {
         _openid: openid,
         company, name, position, size, phone, industry,
+        iscomplete: false,
         createTime: db.serverDate(),
         updateTime: db.serverDate()
       }

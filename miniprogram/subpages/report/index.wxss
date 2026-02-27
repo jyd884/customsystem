@@ -112,13 +112,40 @@
   font-size: 28rpx;
   color: #1e40af;
   line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.level-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  display: block;
+  margin-top: 8rpx;
+  text-align: center;
+  transform: translateX(-25rpx);
 }
 
 .action {
   margin-top: auto;
   padding-top: 32rpx;
+  padding-bottom: 40rpx;
 }
 
 .shadow-btn {
   box-shadow: 0 8rpx 24rpx rgba(0, 82, 217, 0.2) !important;
+  margin-bottom: 32rpx;
+}
+
+.share-btn {
+  width: 100%;
+  background-color: #ffffff;
+  color: #0052d9;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 12rpx;
+  padding: 20rpx 0;
+  border: 2rpx solid #0052d9;
+}
+
+.share-btn::after {
+  border: none;
 }

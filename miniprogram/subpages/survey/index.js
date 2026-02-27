@@ -194,9 +194,20 @@ Page({
         wx.setStorageSync("ocsRecords", history);
 
         wx.navigateTo({
-          url: `/pages/report/index?company=${encodeURIComponent(
+          url: `/subpages/report/index?id=${res.result.recordId}&company=${encodeURIComponent(
             profile.company || "",
           )}&personal=${report.personalScore}&team=${report.teamScore}&org=${report.orgScore}&total=${report.organizationScore}`,
+        });
+      } else if (res.result && res.result.code === 'ALREADY_COMPLETED') {
+        wx.showModal({
+          title: '提示',
+          content: '您已经完成过该问卷了',
+          showCancel: false,
+          success: () => {
+            wx.navigateTo({
+              url: `/subpages/report/index?id=${res.result.recordId}`,
+            });
+          }
         });
       } else {
         showToast(this, "提交失败，请重试");

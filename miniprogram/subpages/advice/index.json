@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "诊断建议",
+  "navigationBarTitleText": "问题分析与建议",
+  "enableShareAppMessage": true,
   "usingComponents": {
     "t-tag": "/miniprogram_npm/tdesign-miniprogram/tag/tag",
     "t-cell-group": "/miniprogram_npm/tdesign-miniprogram/cell-group/cell-group",

@@ -1,6 +1,6 @@
 <view class="page">
   <view class="header">
-    <view class="title">组织活力诊断报告</view>
+    <view class="title">组织活力诊断结果</view>
     <view class="subtitle">从个人活力、团队活力、组织活力三个维度进行诊断</view>
   </view>
 
@@ -23,17 +23,21 @@
       </view>
       <view class="sub-item">
         <view class="sub-val">{{orgScore}}</view>
-        <view class="sub-name">组织活动</view>
+        <view class="sub-name">组织活力</view>
       </view>
     </view>
   </view>
 
   <view class="tip-box">
     <text class="tip-icon">💡</text>
-    <view class="tip-text">您的组织活力处于中等偏上水平，建议重点关注团队协作效率，提升组织响应速度。</view>
+    <view class="tip-text">
+      <text>{{company}}，您诊断分数在“{{scoreRange}}”分段，组织活力诊断结果：\n\n</text>
+      <text class="level-text">▶ {{levelText}}</text>
+    </view>
   </view>
 
   <view class="action">
-    <t-button theme="primary" size="large" block bind:tap="goAdvice" t-class="shadow-btn">生成诊断报告与建议</t-button>
+    <t-button theme="primary" size="large" block bind:tap="goAdvice" t-class="shadow-btn">问题分析与建议</t-button>
+    
   </view>
 </view>
