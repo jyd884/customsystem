@@ -23,9 +23,14 @@ exports.main = async (event, context) => {
       const user = existingUserRes.data[0];
       if (user.iscomplete) {
         // 查找该用户的最新答题记录
-        const recordRes = await db.collection('ocs_records').where({
-          _openid: user._openid
-        }).orderBy('createTime', 'desc').limit(1).get();
+        const recordRes = await db.collection('ocs_records').where(db.command.or([
+          { userId: user._id },
+          { 
+            _openid: user._openid,
+            'userInfo.name': user.name,
+            'userInfo.phone': user.phone
+          }
+        ])).orderBy('createTime', 'desc').limit(1).get();
         
         let recordId = null;
         if (recordRes.data.length > 0) {

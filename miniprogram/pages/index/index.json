@@ -3,6 +3,8 @@
   "usingComponents": {
     "t-button": "/miniprogram_npm/tdesign-miniprogram/button/button",
     "t-input": "/miniprogram_npm/tdesign-miniprogram/input/input",
+    "t-radio": "/miniprogram_npm/tdesign-miniprogram/radio/radio",
+    "t-radio-group": "/miniprogram_npm/tdesign-miniprogram/radio-group/radio-group",
     "t-cell": "/miniprogram_npm/tdesign-miniprogram/cell/cell",
     "t-popup": "/miniprogram_npm/tdesign-miniprogram/popup/popup",
     "t-picker": "/miniprogram_npm/tdesign-miniprogram/picker/picker",

@@ -174,6 +174,7 @@ Page({
       const res = await wx.cloud.callFunction({
         name: 'ocs_submit',
         data: {
+          userId: profile.userId,
           answers: this.data.answers,
           scores: {
             personal: report.personalScore,

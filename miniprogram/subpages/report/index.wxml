@@ -22,7 +22,7 @@
         <view class="sub-name">团队活力</view>
       </view>
       <view class="sub-item">
-        <view class="sub-val">{{orgScore}}</view>
+        <view class="sub-val">{{orgScore-personalScore-teamScore}}</view>
         <view class="sub-name">组织活力</view>
       </view>
     </view>

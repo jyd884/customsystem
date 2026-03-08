@@ -7,17 +7,23 @@
 
   <view class="form-card">
     <view class="field">
-      <view class="field-label">您的姓名</view>
-      <t-input value="{{form.name}}" placeholder="请输入姓名" data-field="name" bind:change="onInputChange" borderless="{{true}}" t-class="custom-input" />
+      <view class="field-label">您贵姓<text style="color: red; margin-left: 4rpx;">*</text></view>
+      <view style="display: flex; align-items: center;">
+        <t-input style="flex: 1;" value="{{form.name}}" placeholder="" data-field="name" bind:change="onInputChange" borderless="{{true}}" t-class="custom-input" />
+        <t-radio-group borderless="{{true}}" value="{{form.gender}}" bind:change="onGenderChange" style="display: flex; flex-direction: row; padding-right: 16rpx; --td-radio-icon-size: 36rpx; font-size: 28rpx;">
+          <t-radio value="先生" label="先生" style="padding: 0 8rpx; flex-direction: row;" />
+          <t-radio value="女士" label="女士" style="padding: 0 8rpx; flex-direction: row;" />
+        </t-radio-group>
+      </view>
     </view>
 
     <view class="field">
-      <view class="field-label">您的电话</view>
+      <view class="field-label">您的电话1<text style="color: red; margin-left: 4rpx;">*</text></view>
       <t-input type="number" value="{{form.phone}}" placeholder="请输入电话号码" data-field="phone" bind:change="onInputChange" borderless="{{true}}" t-class="custom-input" />
     </view>
 
     <view class="field">
-      <view class="field-label">您服务的公司全称</view>
+      <view class="field-label">您服务的公司全称<text style="color: red; margin-left: 4rpx;">*</text></view>
       <t-input value="{{form.company}}" placeholder="请输入公司全称" data-field="company" bind:change="onInputChange" borderless="{{true}}" t-class="custom-input" />
     </view>
 

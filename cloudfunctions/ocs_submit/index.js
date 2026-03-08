@@ -10,12 +10,11 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
   const openid = wxContext.OPENID;
   
-  const { answers, scores, totalScore, advice } = event;
+  const { userId, answers, scores, totalScore, advice } = event;
 
   try {
-    const userRes = await db.collection('ocs_users').where({
-      _openid: openid
-    }).get();
+    const userQuery = userId ? { _id: userId } : { _openid: openid };
+    const userRes = await db.collection('ocs_users').where(userQuery).get();
 
     let userInfo = {};
     if (userRes.data.length > 0) {
@@ -24,7 +23,9 @@ exports.main = async (event, context) => {
       if (userInfo.iscomplete) {
         // 查找该用户的最新答题记录
         const recordRes = await db.collection('ocs_records').where({
-          _openid: openid
+          _openid: openid,
+          'userInfo.name': userInfo.name,
+          'userInfo.phone': userInfo.phone
         }).orderBy('createTime', 'desc').limit(1).get();
         
         let recordId = null;
@@ -52,6 +53,7 @@ exports.main = async (event, context) => {
     const addRes = await db.collection('ocs_records').add({
       data: {
         _openid: openid,
+        userId: userInfo._id || userId,
         userInfo: {
           company: userInfo.company,
           name: userInfo.name,

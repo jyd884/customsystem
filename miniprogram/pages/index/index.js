@@ -24,6 +24,7 @@ Page({
   data: {
     form: {
       name: "",
+      gender: "先生",
       phone: "",
       company: "",
       position: "",
@@ -39,6 +40,12 @@ Page({
     const field = e.currentTarget.dataset.field;
     this.setData({
       [`form.${field}`]: e.detail.value,
+    });
+  },
+
+  onGenderChange(e) {
+    this.setData({
+      'form.gender': e.detail.value
     });
   },
 
@@ -92,7 +99,7 @@ Page({
 
     const profile = {
       ...this.data.form,
-      name: this.data.form.name.trim(),
+      name: this.data.form.name.trim() + (this.data.form.gender || ''),
       phone: this.data.form.phone.trim(),
       company: this.data.form.company.trim(),
       position: this.data.form.position.trim(),
@@ -114,6 +121,9 @@ Page({
       });
       wx.hideLoading();
       if (res.result && res.result.success) {
+        if (res.result.userId) {
+          profile.userId = res.result.userId;
+        }
         getApp().globalData.profile = profile;
         wx.setStorageSync("ocsProfile", profile);
         
