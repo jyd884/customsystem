@@ -1,5 +1,6 @@
 import { _decorator, Node, Vec3, tween, v3 } from 'cc';
 import { SkillBase } from './SkillBase';
+import { HealthComponent } from '../enemy/EnemyBase';
 import { ObjectPoolManager } from '../../core/ObjectPool';
 import { EventBus, GameEvents } from '../../core/EventBus';
 const { ccclass } = _decorator;
@@ -39,7 +40,7 @@ export class FistAura extends SkillBase {
     private _punch(target: Node) {
         if (!target.active) return;
         const dmg = this.effectiveDamage;
-        const hp  = target.getComponent('HealthComponent') as any;
+        const hp  = target.getComponent(HealthComponent);
         if (hp) hp.takeDamage(dmg);
 
         const hit = ObjectPoolManager.get('fist_hit');
@@ -59,7 +60,7 @@ export class FistAura extends SkillBase {
         const enemies = this.findEnemiesInRange(radius);
         enemies.forEach(e => {
             const dmg = this.effectiveDamage;
-            const hp  = e.getComponent('HealthComponent') as any;
+            const hp  = e.getComponent(HealthComponent);
             if (hp) hp.takeDamage(dmg);
         });
         const wave = ObjectPoolManager.get('burst_wave');

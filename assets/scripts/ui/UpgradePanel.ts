@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, instantiate, Prefab } from 'cc';
+import { _decorator, Component, Node, instantiate, Prefab, tween } from 'cc';
 import { EventBus, GameEvents } from '../core/EventBus';
 import { UpgradeCardData } from '../gameplay/upgrade/UpgradeManager';
 import { UpgradeCard } from '../gameplay/upgrade/UpgradeCard';
@@ -45,12 +45,9 @@ export class UpgradePanel extends Component {
         this.node.active = true;
         // 动画：从下方弹出
         this.node.setScale(0.8, 0.8, 1);
-        const tween = (cc as any).tween;
-        if (tween) {
-            tween(this.node)
-                .to(0.2, { scale: { x: 1, y: 1, z: 1 } }, { easing: 'backOut' })
-                .start();
-        }
+        tween(this.node)
+            .to(0.2, { scale: { x: 1, y: 1, z: 1 } }, { easing: 'backOut' })
+            .start();
     }
 
     private _onSelected(_data: unknown) {

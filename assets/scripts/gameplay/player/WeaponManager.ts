@@ -63,7 +63,11 @@ export class WeaponManager extends Component {
         const idx = this._weapons.findIndex(w => w.skillId === oldId);
         if (idx < 0) return;
         this._weapons[idx].node.destroy();
-        const skill = newSkillNode.getComponent(SkillBase)!;
+        const skill = newSkillNode.getComponent(SkillBase);
+        if (!skill) {
+            console.warn(`[WeaponManager] replaceSkill: no SkillBase on node "${newSkillNode.name}"`);
+            return;
+        }
         newSkillNode.setParent(this.node);
         this._weapons[idx] = skill;
         skill.onEquip(this._stats!);

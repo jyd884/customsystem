@@ -1,5 +1,6 @@
 import { _decorator, Node, Vec3, tween, v3 } from 'cc';
 import { SkillBase } from './SkillBase';
+import { HealthComponent } from '../enemy/EnemyBase';
 import { ObjectPoolManager } from '../../core/ObjectPool';
 import { EventBus, GameEvents } from '../../core/EventBus';
 const { ccclass, property } = _decorator;
@@ -59,7 +60,7 @@ export class FlyingSword extends SkillBase {
         }
     }
 
-    private _fireSingle(from: Vec3, to: Vec3 | null, target: Node | null | false) {
+    private _fireSingle(from: Vec3, to: Vec3 | null, target: Node | null) {
         const sword = ObjectPoolManager.get('flying_sword');
         sword.setWorldPosition(from);
         sword.active = true;
@@ -72,8 +73,8 @@ export class FlyingSword extends SkillBase {
             .to(0.25, { worldPosition: dest }, { easing: 'linear' })
             .call(() => {
                 // 到达目标位置时检测伤害
-                if (target && (target as Node).active) {
-                    const hp = (target as Node).getComponent('HealthComponent') as any;
+                if (target && target.active) {
+                    const hp = target.getComponent(HealthComponent);
                     if (hp) hp.takeDamage(dmg);
                     EventBus.emit(GameEvents.DAMAGE_NUMBER, { pos: dest, dmg, isCrit: false });
                 }

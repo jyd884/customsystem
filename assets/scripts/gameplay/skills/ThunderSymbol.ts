@@ -1,5 +1,6 @@
 import { _decorator, Node, Vec3, tween, v3 } from 'cc';
 import { SkillBase } from './SkillBase';
+import { HealthComponent } from '../enemy/EnemyBase';
 import { ObjectPoolManager } from '../../core/ObjectPool';
 import { EventBus, GameEvents } from '../../core/EventBus';
 const { ccclass } = _decorator;
@@ -44,7 +45,7 @@ export class ThunderSymbol extends SkillBase {
             .call(() => {
                 ObjectPoolManager.put('thunder_bolt', bolt);
                 // 伤害
-                const hp = target.getComponent('HealthComponent') as any;
+                const hp = target.getComponent(HealthComponent);
                 if (hp) hp.takeDamage(dmg);
                 EventBus.emit(GameEvents.DAMAGE_NUMBER, {
                     pos: target.worldPosition, dmg, isCrit: false

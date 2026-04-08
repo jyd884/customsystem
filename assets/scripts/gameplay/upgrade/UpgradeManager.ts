@@ -1,6 +1,7 @@
 import { _decorator, Component } from 'cc';
 import { EventBus, GameEvents } from '../../core/EventBus';
 import { WeaponManager } from '../player/WeaponManager';
+import { PlayerStats } from '../player/PlayerStats';
 import { GameManager, GameState } from '../../core/GameManager';
 const { ccclass, property } = _decorator;
 
@@ -116,7 +117,7 @@ export class UpgradeManager extends Component {
     private _onCardSelected(data: { card: UpgradeCardData }) {
         const card = data.card;
         const wm   = this._getWeaponManager();
-        const stats = this.node.parent?.getComponentInChildren?.('PlayerStats') as any;
+        const stats = this.node.parent?.getComponentInChildren(PlayerStats);
 
         switch (card.type) {
             case CardType.NEW_WEAPON:
@@ -164,6 +165,6 @@ export class UpgradeManager extends Component {
     }
 
     private _getWeaponManager(): WeaponManager | null {
-        return this.node.parent?.getComponentInChildren?.('WeaponManager') as WeaponManager ?? null;
+        return this.node.parent?.getComponentInChildren(WeaponManager) ?? null;
     }
 }

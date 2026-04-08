@@ -1,4 +1,4 @@
-import { _decorator, Component, AudioClip, AudioSource, Node, game } from 'cc';
+import { _decorator, Component, AudioClip, AudioSource, Node, game, sys } from 'cc';
 const { ccclass, property } = _decorator;
 
 /**

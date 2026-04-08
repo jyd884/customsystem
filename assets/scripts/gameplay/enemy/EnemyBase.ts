@@ -1,6 +1,8 @@
 import { _decorator, Component, Node, Vec3 } from 'cc';
 import { EventBus, GameEvents } from '../../core/EventBus';
 import { GameManager } from '../../core/GameManager';
+import { PlayerController } from '../player/PlayerController';
+import { PlayerStats } from '../player/PlayerStats';
 const { ccclass, property } = _decorator;
 
 /** 敌人分类 */
@@ -137,9 +139,9 @@ export class EnemyBase extends Component {
         const dist = Vec3.distance(this.node.worldPosition, this._player.worldPosition);
         if (dist < 28) {
             this._contactCooldown = 1.0;
-            const ctrl = this._player.getComponent('PlayerController') as any;
+            const ctrl = this._player.getComponent(PlayerController);
             if (ctrl && !ctrl.isInvincible) {
-                const stats = this._player.getComponent('PlayerStats') as any;
+                const stats = this._player.getComponent(PlayerStats);
                 stats?.takeDamage(this.contactDamage);
                 ctrl.triggerInvincible();
             }

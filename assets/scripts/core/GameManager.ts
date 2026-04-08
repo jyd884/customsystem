@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, director, game } from 'cc';
+import { _decorator, Component, Node, director, game, sys } from 'cc';
 const { ccclass, property } = _decorator;
 
 /** 游戏全局状态枚举 */
