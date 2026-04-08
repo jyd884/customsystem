@@ -1,0 +1,173 @@
+[
+  {
+    "id": "new_flying_sword",
+    "type": "new_weapon",
+    "name": "飞剑",
+    "desc": "解锁飞剑：发射飞剑攻击最近敌人",
+    "rarity": 1,
+    "weaponId": "flying_sword"
+  },
+  {
+    "id": "new_thunder_symbol",
+    "type": "new_weapon",
+    "name": "雷符",
+    "desc": "解锁雷符：在敌人头顶召唤落雷",
+    "rarity": 1,
+    "weaponId": "thunder_symbol"
+  },
+  {
+    "id": "new_fist_aura",
+    "type": "new_weapon",
+    "name": "拳罡",
+    "desc": "解锁拳罡：以罡气冲击近身敌人",
+    "rarity": 1,
+    "weaponId": "fist_aura"
+  },
+  {
+    "id": "up_flying_sword_2",
+    "type": "weapon_up",
+    "name": "飞剑·进阶",
+    "desc": "飞剑升至2级：剑雨，同时发射3枚扇形飞剑",
+    "rarity": 2,
+    "weaponId": "flying_sword"
+  },
+  {
+    "id": "up_flying_sword_3",
+    "type": "weapon_up",
+    "name": "飞剑·大成",
+    "desc": "飞剑升至3级：万剑归宗，追踪穿透飞剑",
+    "rarity": 3,
+    "weaponId": "flying_sword"
+  },
+  {
+    "id": "up_thunder_symbol_2",
+    "type": "weapon_up",
+    "name": "雷符·进阶",
+    "desc": "雷符升至2级：同时召唤3道落雷",
+    "rarity": 2,
+    "weaponId": "thunder_symbol"
+  },
+  {
+    "id": "up_thunder_symbol_3",
+    "type": "weapon_up",
+    "name": "雷符·大成",
+    "desc": "雷符升至3级：九天雷劫，链式连跳3敌",
+    "rarity": 3,
+    "weaponId": "thunder_symbol"
+  },
+  {
+    "id": "up_fist_aura_2",
+    "type": "weapon_up",
+    "name": "拳罡·进阶",
+    "desc": "拳罡升至2级：旋转拳气，360度AOE",
+    "rarity": 2,
+    "weaponId": "fist_aura"
+  },
+  {
+    "id": "up_fist_aura_3",
+    "type": "weapon_up",
+    "name": "拳罡·大成",
+    "desc": "拳罡升至3级：罡气爆发，超大冲击波",
+    "rarity": 3,
+    "weaponId": "fist_aura"
+  },
+  {
+    "id": "passive_hp_up",
+    "type": "passive",
+    "name": "固本培元",
+    "desc": "修为上限+30（最大血量+30）",
+    "rarity": 1,
+    "passiveKey": "maxHp",
+    "passiveVal": 30
+  },
+  {
+    "id": "passive_attack_up",
+    "type": "passive",
+    "name": "灵力精进",
+    "desc": "灵力+0.15（技能伤害倍率+15%）",
+    "rarity": 2,
+    "passiveKey": "attack",
+    "passiveVal": 0.15
+  },
+  {
+    "id": "passive_speed_up",
+    "type": "passive",
+    "name": "轻身术",
+    "desc": "身法+20（移动速度+20）",
+    "rarity": 1,
+    "passiveKey": "moveSpeed",
+    "passiveVal": 20
+  },
+  {
+    "id": "passive_crit_up",
+    "type": "passive",
+    "name": "锐气",
+    "desc": "运势+0.08（暴击率+8%）",
+    "rarity": 2,
+    "passiveKey": "critRate",
+    "passiveVal": 0.08
+  },
+  {
+    "id": "passive_attackspeed_up",
+    "type": "passive",
+    "name": "疾法",
+    "desc": "攻速+0.2（武器冷却缩减20%）",
+    "rarity": 2,
+    "passiveKey": "attackSpeed",
+    "passiveVal": 0.2
+  },
+  {
+    "id": "passive_range_amp",
+    "type": "passive",
+    "name": "范围增幅",
+    "desc": "技能范围+0.25（所有技能范围扩大25%）",
+    "rarity": 2,
+    "passiveKey": "range",
+    "passiveVal": 0.25
+  },
+  {
+    "id": "sword_intent",
+    "type": "passive",
+    "name": "剑意强化",
+    "desc": "剑系技能伤害+20%，可合成【御剑飞行】",
+    "rarity": 2,
+    "passiveKey": "attack",
+    "passiveVal": 0.2
+  },
+  {
+    "id": "synth_sword_flight",
+    "type": "synthesis",
+    "name": "★ 御剑飞行",
+    "desc": "【合成】飞剑 + 剑意强化 → 追踪穿透御剑，射程大幅提升",
+    "rarity": 3,
+    "weaponId": "sword_flight",
+    "requireWeapon": "flying_sword",
+    "requirePassive": "sword_intent"
+  },
+  {
+    "id": "synth_nine_thunder",
+    "type": "synthesis",
+    "name": "★ 九天雷劫",
+    "desc": "【合成】雷符 + 范围增幅 → 全屏链式落雷，覆盖整个战场",
+    "rarity": 3,
+    "weaponId": "nine_thunder",
+    "requireWeapon": "thunder_symbol",
+    "requirePassive": "passive_range_amp"
+  },
+  {
+    "id": "special_second_life",
+    "type": "special",
+    "name": "不死之身",
+    "desc": "【特殊】本局一次死亡保护：致死伤害后回复20%血量",
+    "rarity": 3
+  },
+  {
+    "id": "special_exp_burst",
+    "type": "special",
+    "name": "顿悟",
+    "desc": "【特殊】立即获得3级经验，并永久提升悟性+0.1",
+    "rarity": 2,
+    "passiveKey": "expRate",
+    "passiveVal": 0.1
+  }
+]

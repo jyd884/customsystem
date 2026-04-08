@@ -1,0 +1,71 @@
+[
+  {
+    "id": "flying_sword",
+    "name": "飞剑",
+    "type": "weapon",
+    "description": "发射一枚飞剑攻击最近的敌人",
+    "baseDamage": 18,
+    "baseCooldown": 1.2,
+    "baseRange": 300,
+    "baseProjectile": 1,
+    "levels": [
+      { "level": 1, "desc": "单枚飞剑，直线射出" },
+      { "level": 2, "desc": "剑雨：同时发射3枚扇形飞剑" },
+      { "level": 3, "desc": "万剑归宗：多枚追踪穿透飞剑" }
+    ]
+  },
+  {
+    "id": "thunder_symbol",
+    "name": "雷符",
+    "type": "weapon",
+    "description": "召唤雷电在敌人头顶爆发",
+    "baseDamage": 25,
+    "baseCooldown": 2.0,
+    "baseRange": 150,
+    "baseProjectile": 1,
+    "levels": [
+      { "level": 1, "desc": "1道雷，圆形AOE" },
+      { "level": 2, "desc": "3道雷，同时落下" },
+      { "level": 3, "desc": "九天雷劫：链式连锁，跳3个目标" }
+    ]
+  },
+  {
+    "id": "fist_aura",
+    "name": "拳罡",
+    "type": "weapon",
+    "description": "以拳气攻击近身敌人",
+    "baseDamage": 40,
+    "baseCooldown": 0.8,
+    "baseRange": 80,
+    "baseProjectile": 1,
+    "levels": [
+      { "level": 1, "desc": "单次强力近身重击" },
+      { "level": 2, "desc": "旋转拳气，360度多目标" },
+      { "level": 3, "desc": "罡气爆发：大范围冲击波" }
+    ]
+  },
+  {
+    "id": "sword_flight",
+    "name": "御剑飞行",
+    "type": "synthesis",
+    "description": "【合成】飞剑 + 剑意强化 → 追踪穿透飞剑",
+    "requireWeapon": "flying_sword",
+    "requirePassive": "sword_intent",
+    "baseDamage": 35,
+    "baseCooldown": 1.0,
+    "baseRange": 400,
+    "baseProjectile": 3
+  },
+  {
+    "id": "nine_thunder",
+    "name": "九天雷劫",
+    "type": "synthesis",
+    "description": "【合成】雷符 + 范围增幅 → 全屏链式落雷",
+    "requireWeapon": "thunder_symbol",
+    "requirePassive": "range_amp",
+    "baseDamage": 50,
+    "baseCooldown": 3.0,
+    "baseRange": 9999,
+    "baseProjectile": 5
+  }
+]

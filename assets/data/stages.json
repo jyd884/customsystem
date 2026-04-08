@@ -1,0 +1,27 @@
+[
+  {
+    "id": "stage_01",
+    "name": "妖山禁地",
+    "description": "妖气弥漫的禁地，小妖横行",
+    "bgm": "bgm_stage01",
+    "waves": [
+      { "time": 0,   "enemyId": "demon_small",       "count": 8,  "interval": 0.5, "hp": 30,   "speed": 70,  "expDrop": 1,   "contactDmg": 8,  "type": "normal" },
+      { "time": 30,  "enemyId": "demon_small",       "count": 12, "interval": 0.3, "hp": 35,   "speed": 75,  "expDrop": 1,   "contactDmg": 8,  "type": "normal" },
+      { "time": 60,  "enemyId": "demon_small",       "count": 15, "interval": 0.3, "hp": 40,   "speed": 78,  "expDrop": 2,   "contactDmg": 9,  "type": "normal" },
+      { "time": 90,  "enemyId": "demon_small",       "count": 20, "interval": 0.2, "hp": 45,   "speed": 80,  "expDrop": 2,   "contactDmg": 9,  "type": "normal" },
+      { "time": 120, "enemyId": "demon_elite",       "count": 2,  "interval": 2.0, "hp": 150,  "speed": 55,  "expDrop": 8,   "contactDmg": 15, "type": "elite" },
+      { "time": 150, "enemyId": "demon_small",       "count": 25, "interval": 0.2, "hp": 55,   "speed": 85,  "expDrop": 2,   "contactDmg": 10, "type": "normal" },
+      { "time": 180, "enemyId": "demon_small",       "count": 30, "interval": 0.15,"hp": 60,   "speed": 88,  "expDrop": 2,   "contactDmg": 10, "type": "normal" },
+      { "time": 210, "enemyId": "demon_elite",       "count": 3,  "interval": 1.5, "hp": 180,  "speed": 58,  "expDrop": 10,  "contactDmg": 16, "type": "elite" },
+      { "time": 300, "enemyId": "mini_boss_tiger",   "count": 1,  "interval": 0,   "hp": 600,  "speed": 45,  "expDrop": 40,  "contactDmg": 25, "type": "mini_boss" },
+      { "time": 360, "enemyId": "demon_small",       "count": 40, "interval": 0.1, "hp": 70,   "speed": 90,  "expDrop": 3,   "contactDmg": 11, "type": "normal" },
+      { "time": 450, "enemyId": "demon_elite",       "count": 5,  "interval": 1.0, "hp": 220,  "speed": 62,  "expDrop": 12,  "contactDmg": 18, "type": "elite" },
+      { "time": 540, "enemyId": "demon_elite",       "count": 5,  "interval": 0.8, "hp": 250,  "speed": 65,  "expDrop": 14,  "contactDmg": 20, "type": "elite" },
+      { "time": 600, "enemyId": "demon_small",       "count": 50, "interval": 0.08,"hp": 80,   "speed": 95,  "expDrop": 3,   "contactDmg": 12, "type": "normal" },
+      { "time": 900, "enemyId": "boss_mountain_demon","count": 1, "interval": 0,   "hp": 3000, "speed": 40,  "expDrop": 200, "contactDmg": 40, "type": "boss" },
+      { "time": 1200,"enemyId": "demon_small",       "count": 999,"interval": 0.05,"hp": 100,  "speed": 110, "expDrop": 4,   "contactDmg": 14, "type": "normal" }
+    ],
+    "realmBreakKills": [50, 150, 300],
+    "winTime": 1800
+  }
+]

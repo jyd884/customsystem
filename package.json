@@ -1,0 +1,10 @@
+{
+  "name": "blade-survivor",
+  "version": "1.0.0",
+  "description": "《幸存之刃》Blade Survivor - Roguelite 弹幕割草游戏",
+  "engines": {
+    "cocos-creator": "3.8.8"
+  },
+  "keywords": ["cocos-creator", "roguelite", "survivor", "xianxia"],
+  "license": "MIT"
+}

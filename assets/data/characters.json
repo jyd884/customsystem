@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sword_mingyuan",
+    "name": "剑修·明远",
+    "faction": "剑宗",
+    "description": "攻速极快的剑客，单体伤害无出其右",
+    "initialWeapon": "flying_sword",
+    "unlockCost": 0,
+    "stats": {
+      "maxHp":       90,
+      "attack":      1.2,
+      "moveSpeed":   170,
+      "expRate":     1.0,
+      "defense":     0.0,
+      "critRate":    0.08,
+      "critDamage":  2.2,
+      "attackSpeed": 1.2,
+      "range":       1.0,
+      "projectile":  0
+    }
+  },
+  {
+    "id": "symbol_lingsu",
+    "name": "符修·灵素",
+    "faction": "符宗",
+    "description": "符文法师，AOE广而强，擅长控场",
+    "initialWeapon": "thunder_symbol",
+    "unlockCost": 0,
+    "stats": {
+      "maxHp":       80,
+      "attack":      1.0,
+      "moveSpeed":   155,
+      "expRate":     1.2,
+      "defense":     0.0,
+      "critRate":    0.05,
+      "critDamage":  2.0,
+      "attackSpeed": 1.0,
+      "range":       1.3,
+      "projectile":  0
+    }
+  },
+  {
+    "id": "body_tieNiu",
+    "name": "体修·铁牛",
+    "faction": "武宗",
+    "description": "铁血肉身，血量极高，近身爆发惊人",
+    "initialWeapon": "fist_aura",
+    "unlockCost": 0,
+    "stats": {
+      "maxHp":       160,
+      "attack":      1.1,
+      "moveSpeed":   145,
+      "expRate":     1.0,
+      "defense":     0.1,
+      "critRate":    0.06,
+      "critDamage":  2.5,
+      "attackSpeed": 0.9,
+      "range":       0.85,
+      "projectile":  0
+    }
+  }
+]

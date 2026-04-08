@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "lib": ["ES2015", "ES2016", "ES2017", "DOM"],
+    "strict": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "outDir": "./temp/programming/packer-driver/targets",
+    "baseUrl": "./assets/scripts",
+    "paths": {
+      "db://*": ["../../*"]
+    }
+  },
+  "include": ["assets/scripts/**/*.ts"],
+  "exclude": ["node_modules", "temp"]
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "demon_small",
+    "name": "小妖",
+    "type": "normal",
+    "hp": 30,
+    "speed": 70,
+    "expDrop": 1,
+    "contactDmg": 8,
+    "poolKey": "demon_small",
+    "initPoolSize": 60
+  },
+  {
+    "id": "demon_elite",
+    "name": "精英妖",
+    "type": "elite",
+    "hp": 150,
+    "speed": 55,
+    "expDrop": 8,
+    "contactDmg": 15,
+    "poolKey": "demon_elite",
+    "initPoolSize": 20
+  },
+  {
+    "id": "mini_boss_tiger",
+    "name": "白虎煞",
+    "type": "mini_boss",
+    "hp": 600,
+    "speed": 45,
+    "expDrop": 40,
+    "contactDmg": 25,
+    "poolKey": "mini_boss_tiger",
+    "initPoolSize": 3
+  },
+  {
+    "id": "boss_mountain_demon",
+    "name": "妖山魔君",
+    "type": "boss",
+    "hp": 3000,
+    "speed": 40,
+    "expDrop": 200,
+    "contactDmg": 40,
+    "poolKey": "boss_mountain_demon",
+    "initPoolSize": 1,
+    "phases": [
+      { "hpThreshold": 1.0, "moveSpeed": 40,  "attackInterval": 3.0 },
+      { "hpThreshold": 0.6, "moveSpeed": 60,  "attackInterval": 2.0 },
+      { "hpThreshold": 0.3, "moveSpeed": 85,  "attackInterval": 1.2 }
+    ]
+  }
+]
