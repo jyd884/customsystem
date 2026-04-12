@@ -1,0 +1,16 @@
+database:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: "password"
+  db_name: "ht_process_db"
+
+excel:
+  # 数据文件存放目录
+  data_dir: "data"
+  # 文件名匹配模式（支持通配符）
+  file_pattern: "HT_工序*.xlsx"
+
+logging:
+  level: "INFO"
+  file: "logs/app.log"
