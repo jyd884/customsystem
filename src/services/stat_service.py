@@ -99,7 +99,7 @@ class StatService:
                 continue
             n = len(values)
             mean = sum(values) / n
-            variance = sum((v - mean) ** 2 for v in values) / n if n > 1 else 0.0
+            variance = sum((v - mean) ** 2 for v in values) / (n - 1) if n > 1 else 0.0
             std = variance ** 0.5
             stats[label] = {
                 "count": n,
